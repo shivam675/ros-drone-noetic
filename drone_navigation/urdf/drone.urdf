@@ -1,0 +1,398 @@
+<?xml version="1.0"?>
+<!--
+  Project Name: ebot
+  Created on:   2.10.2020
+  Author: ROS team
+  Copyright (c) 2020 eYantra IITB
+-->
+<robot name="drone" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	 <link
+    name="drone_base">
+    <inertial>
+      <origin
+   xyz="0 0.0 0.12"
+        rpy="0 0 0" />
+      <mass
+        value="1.2" />
+    <!--   <inertia
+        ixx="0.0077465"
+        ixy="0.0005698"
+        ixz="0.0049745"
+        iyy="0.03055"
+        iyz="-4.0532E-05"
+        izz="0.030588" /> -->
+         <inertia ixx="0.356" ixy="0" ixz="0" iyy="0.9443" iyz="0" izz="1.008"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://drone_gazebo/mesh/nopro_drone.stl" scale="0.5 0.5 0.5" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+    <origin
+        xyz="0 0.0 0.12"
+        rpy="0 0 0" />
+      <geometry>
+     <box size="0.585 0.30 0.25"/>
+      </geometry>
+    </collision>
+  </link>
+
+      <!-- Prop one joint  -->
+
+  	  <link name="prop1">
+    		<inertial>
+			  <origin
+			    xyz="0 0 0"
+			    rpy="0 0 0" />
+			  <mass
+			    value="0.1" />
+			 <!--  <inertia
+			    ixx="0.0012203"
+			    ixy="-1.8327E-07"
+			    ixz="1.356E-08"
+			    iyy="0.0022215"
+			    iyz="3.3883E-09"
+			    izz="0.001221" /> -->
+          			<inertia ixx="0.003" ixy="0" ixz="0" iyy="0.0030" iyz="0" izz="0.0035"/>
+    		</inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+	      <geometry>
+	        <mesh
+	          filename="package://drone_gazebo/mesh/prop_ccw.stl" scale="3.5 3.5 3.5" />
+	      </geometry>
+	      <material
+	        name="">
+	        <color
+	          rgba="0.79216 0.81961 0.93333 1" />
+	      </material>
+    </visual>
+    <collision>
+		  <origin
+		     xyz="0 0 0"
+		    rpy="1.57 1.57 0" />
+		  <geometry>
+		     <cylinder length="0.05" radius="0.1"/>
+		  </geometry>
+    </collision>
+  </link>
+  <joint
+    name="prop_base_one"
+    type="continuous">
+    <origin
+      xyz="2.27 1.975 0.67"
+      rpy="0 0 0" />
+    <parent
+      link="drone_base" />
+    <child
+      link="prop1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+    <!-- end prop one -->
+
+
+
+    <!-- Prop TWO joint  -->
+
+      <link name="prop2">
+        <inertial>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <mass
+          value="0.1" />
+       <!--  <inertia
+          ixx="0.0012203"
+          ixy="-1.8327E-07"
+          ixz="1.356E-08"
+          iyy="0.0022215"
+          iyz="3.3883E-09"
+          izz="0.001221" /> -->
+                <inertia ixx="0.003" ixy="0" ixz="0" iyy="0.0030" iyz="0" izz="0.0035"/>
+        </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://drone_gazebo/mesh/prop.stl" scale="3.5 3.5 3.5" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+    </visual>
+    <collision>
+      <origin
+         xyz="0 0 0"
+        rpy="1.57 1.57 0" />
+      <geometry>
+         <cylinder length="0.05" radius="0.1"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="prop_base_two"
+    type="continuous">
+    <origin
+      xyz="2.27 -1.975 0.67"
+      rpy="0 0 0" />
+    <parent
+      link="drone_base" />
+    <child
+      link="prop2" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+    <!-- end prop two -->
+
+
+
+    <!-- Prop three joint  -->
+
+      <link name="prop3">
+        <inertial>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <mass
+          value="0.1" />
+       <!--  <inertia
+          ixx="0.0012203"
+          ixy="-1.8327E-07"
+          ixz="1.356E-08"
+          iyy="0.0022215"
+          iyz="3.3883E-09"
+          izz="0.001221" /> -->
+                <inertia ixx="0.003" ixy="0" ixz="0" iyy="0.0030" iyz="0" izz="0.0035"/>
+        </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://drone_gazebo/mesh/prop_ccw.stl" scale="3.5 3.5 3.5" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+    </visual>
+    <collision>
+      <origin
+         xyz="0 0 0"
+        rpy="1.57 1.57 0" />
+      <geometry>
+         <cylinder length="0.05" radius="0.1"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="prop_base_three"
+    type="continuous">
+    <origin
+      xyz="-1.2 -1.975 0.67"
+      rpy="0 0 0" />
+    <parent
+      link="drone_base" />
+    <child
+      link="prop3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+    <!-- end prop three -->
+
+
+
+
+
+    <!-- Prop TWO joint  -->
+
+      <link name="prop4">
+        <inertial>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <mass
+          value="0.1" />
+       <!--  <inertia
+          ixx="0.0012203"
+          ixy="-1.8327E-07"
+          ixz="1.356E-08"
+          iyy="0.0022215"
+          iyz="3.3883E-09"
+          izz="0.001221" /> -->
+                <inertia ixx="0.003" ixy="0" ixz="0" iyy="0.0030" iyz="0" izz="0.0035"/>
+        </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://drone_gazebo/mesh/prop.stl" scale="3.5 3.5 3.5" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+    </visual>
+    <collision>
+      <origin
+         xyz="0 0 0"
+        rpy="1.57 1.57 0" />
+      <geometry>
+         <cylinder length="0.05" radius="0.1"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="prop_base_four"
+    type="continuous">
+    <origin
+      xyz="-1.2 1.975 0.67"
+      rpy="0 0 0" />
+    <parent
+      link="drone_base" />
+    <child
+      link="prop4" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+    <!-- end prop two -->
+
+
+
+
+
+
+
+		<link name="imu">
+      <pose>0 0 0.3 0 0 0</pose>
+      <inertial>
+        <mass value="0.01"/>
+				<origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+					<inertia ixx="2.1733e-6" ixy="0" ixz="0" iyy="2.1733e-6" iyz="0" izz="1.8e-7"/>
+      </inertial>
+      <visual name="visual">
+          <geometry>
+              <box size="0.01 0.01 0.01" />
+          </geometry>
+      </visual>
+      <collision name="collision">
+        <geometry>
+              <box size="0.01 0.01 0.01" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="gps">
+      <pose>0 0 0.31 0 0 0</pose>
+      <inertial>
+        <mass value="0.01"/>
+				<origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+					<inertia ixx="2.1733e-6" ixy="0" ixz="0" iyy="2.1733e-6" iyz="0" izz="1.8e-7"/>
+      </inertial>
+      <visual name="visual">
+          <geometry>
+              <box size="0.01 0.01 0.01" />
+          </geometry>
+      </visual>
+      <collision name="collision">
+        <geometry>
+              <box size="0.01 0.01 0.01" />
+          </geometry>
+      </collision>
+    </link>
+
+
+		<joint name="imu_joint" type="fixed">
+			<origin
+	      xyz="0 0 0.67"
+	      rpy="0 0 0" />
+			<parent link="drone_base" />
+			<child link="imu" />
+		</joint>
+
+		<joint name="gps_joint" type="fixed">
+			<origin
+	      xyz="0 0 0.67"
+	      rpy="0 0 0" />
+			<parent link="drone_base" />
+			<child link="gps" />
+
+		</joint>
+
+
+
+
+		<plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <updateRate>60</updateRate>
+      <alwaysOn>true</alwaysOn>
+      <bodyName>imu</bodyName>
+      <frameName>imu</frameName>
+      <topicName>/drone/imu/data</topicName>
+      <serviceName>imu_service</serviceName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>20.0</updateRate>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+    </plugin>
+
+    <plugin name="gps_plugin" filename="libgazebo_ros_gps.so">
+      <updateRate>60</updateRate>
+      <robotNamespace>drone</robotNamespace>
+      <bodyName>gps</bodyName>
+      <referenceLatitude>19</referenceLatitude>
+      <referenceLongitude>72</referenceLongitude>
+      <referenceHeading>0</referenceHeading>
+      <referenceAltitude>0</referenceAltitude>
+      <topicName>gps</topicName>
+      <velocityTopicName>gps_velocity</velocityTopicName>
+    </plugin>
+
+    <plugin name="gazebo_edrone_propulsion" filename="libgazebo_edrone_propulsion.so">
+      <namespace_model>/drone</namespace_model>
+      <activate_pid_control>yes</activate_pid_control>
+      <prop_kp> 1 </prop_kp>
+      <prop_ki> 0 </prop_ki>
+      <prop_kd> 0.0 </prop_kd>
+      <robotNamespace>drone</robotNamespace>
+      <bodyName_1>prop1</bodyName_1>
+      <bodyName_2>prop2</bodyName_2>
+      <bodyName_3>prop3</bodyName_3>
+      <bodyName_4>prop4</bodyName_4>
+      <topicName>pwm</topicName>
+    </plugin>
+
+
+
+
+
+
+
+
+</robot>
